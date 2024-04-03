@@ -1,6 +1,10 @@
 package corporacion;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+
 import utilidades.*;
 /**
  * @author Aitor Pascual Jiménez
@@ -18,13 +22,54 @@ public class Empleados {
     private double sueldo;
     private LocalDate fechaNacimiento;
     private LocalDate fechaContrato;
-    
-    private static final String NOMBRE_EMPRESA = "Umbrella Corporation";
-    private static final LocalDate FECHA_CREACION_EMPRESA = LocalDate.of(1998,2,25);
-    private static double ayudaComida;
-    private static double vigencia = 20;
+
+    //atribs globales
+    private static final String NOMBRE_EMPRESA = "UMBRELLA CORP";
+    private static final LocalDate FECHA_CREACION_EMPRESA = LocalDate.of(2016,5,2);
+    private static double ayudaComida = 110; //ayuda mensual a la comida
+    private static double vigencia = 20; //20 por año
     private static int contadorEmpleado = 0; //aumenta con cada instancia
 
-    Empleados (String codEmpleado){}
+    Empleados (String codEmpleado, Dni dniEmpleado, String nombre, String apellido, String departamento, double sueldo, LocalDate fechaNacimiento, LocalDate fechaContrato){
 
+        this.codEmpleado = codEmpleado;
+        this.dniEmpleado = dniEmpleado;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.departamento = departamento;
+        this.sueldo = sueldo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaContrato = fechaContrato;
+
+    }
+
+
+
+
+    @Override
+    public float calcularSueldo() {
+        return 0;
+    }
+
+
+    @Override
+    public int calcularAntiguedadAnios() {
+        return (int) ChronoUnit.YEARS.between(fechaContrato, LocalDate.now());
+    }
+
+    /**
+     *
+     * @return devuelve true si el mes de ncaimiento es el actuál
+     */
+    @Override
+    public boolean esteMesCumpleAniosEmpleado() {
+        return (LocalDate.now().getMonth() == fechaNacimiento.getMonth());
+    }
+
+    public String mostrarDatos(){
+        return "Codigo= "+dniEmpleado.getNumeroDNI()+"\nNombre= "+nombre+"\nApellido= "+apellido
+                +"\nDepartamento= "+departamento+"\nAños en la empresa= "+calcularAntiguedadAnios()+"\nEdad= "+ Period.between(fechaNacimiento, LocalDate.now()).getYears()
+                +"\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))+
+                
+    }
 }
