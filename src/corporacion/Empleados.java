@@ -4,8 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
-
 import utilidades.*;
+
 /**
  * @author Aitor Pascual Jiménez
  * @author Carlos Hernández Herrador
@@ -13,7 +13,8 @@ import utilidades.*;
  * @since Java 8.0
  */
 
-public class Empleados {
+public class Empleados implements paraEmpleado {
+    //atribs empleado
     private String codEmpleado;
     private Dni dniEmpleado;
     private String nombre;
@@ -69,7 +70,7 @@ public class Empleados {
     public String mostrarDatos(){
         return "Codigo= "+dniEmpleado.getNumeroDNI()+"\nNombre= "+nombre+"\nApellido= "+apellido
                 +"\nDepartamento= "+departamento+"\nAños en la empresa= "+calcularAntiguedadAnios()+"\nEdad= "+ Period.between(fechaNacimiento, LocalDate.now()).getYears()
-                +"\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"))+
-                
+                +"\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"));
+
     }
 }
