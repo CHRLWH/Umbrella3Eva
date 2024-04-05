@@ -3,7 +3,15 @@ package utilidades;
 public class Dni {
 
 
-    /*                       ATRIBUTOS                        */
+
+
+/*
+-----------------------------------------------
+|                                             |
+|                    Atributos                |
+|                                             |
+-----------------------------------------------
+*/
 
 
     //LA LETRA SE DEBE CALCULAR A PARTIR DEL NUMERO
@@ -11,15 +19,26 @@ public class Dni {
 
     private static final String DIGITOS_DE_CONTROL = "TRWAGMYFPDXBNJZSQVHLCKE";
 
-    /*                       BUILDERS                         */
+/*
+-----------------------------------------------
+|                                             |
+|                    Builders                 |
+|                                             |
+-----------------------------------------------
+*/
 
     Dni(int numeroDNI){
         this.numeroDNI = numeroDNI;
     }
 
 
-    /*                       METODOS                          */
-
+/*
+-----------------------------------------------
+|                                             |
+|                    Métodos                  |
+|                                             |
+-----------------------------------------------
+*/
     @Override
     public String toString() {
         return "utilidades= " + numeroDNI +
