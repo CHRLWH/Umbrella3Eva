@@ -48,18 +48,22 @@ public class Empleados implements paraEmpleado {
 
 
     @Override
-    public float calcularSueldo() {
+    public float calcularSueldoMensual() {
         return 0;
     }
 
 
+    /**
+     * Calcula la diferencia en años entre la fecha de contrato y el día de hoy
+     * @return diferencia de años
+     */
     @Override
     public int calcularAntiguedadAnios() {
         return (int) ChronoUnit.YEARS.between(fechaContrato, LocalDate.now());
     }
 
     /**
-     *
+     * Comprueba si estamos en el mes de cumpleaños de un empleado
      * @return devuelve true si el mes de ncaimiento es el actuál
      */
     @Override
@@ -76,6 +80,10 @@ public class Empleados implements paraEmpleado {
                 "\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"));
     }
 
+    /**
+     * genera el código de empleado
+     * @return UMBRE0001, UMBRE0002...
+     */
     private String generarCodEmpleado () {
         contadorEmpleado++;
         String cabecera = "UMBRE";

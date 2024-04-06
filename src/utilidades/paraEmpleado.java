@@ -1,7 +1,7 @@
 package utilidades;
 
 public interface paraEmpleado {
-    public float calcularSueldo();
+    public float calcularSueldoMensual();
     public int calcularAntiguedadAnios();
     public boolean esteMesCumpleAniosEmpleado();
 
