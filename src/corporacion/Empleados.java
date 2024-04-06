@@ -17,8 +17,8 @@ public class Empleados implements paraEmpleado {
     //atribs empleado
     private String codEmpleado;
     private Dni dniEmpleado;
-    private String nombre;
-    private String apellido;
+    private final String nombre;
+    private final String apellido;
     private String departamento;
     private double sueldoAnual;
     private LocalDate fechaNacimiento;
@@ -31,10 +31,16 @@ public class Empleados implements paraEmpleado {
     private static double vigencia = 20; //20 por año
     private static int contadorEmpleado = 0; //aumenta con cada instancia
 
-    Empleados (Dni dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato){
+    Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato){
 
         this.codEmpleado = generarCodEmpleado();
-        this.dniEmpleado = dniEmpleado;
+
+        if (Dni.validarNIF(dniEmpleado)) {
+            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado));
+        } else {
+            throw new IllegalArgumentException("[!] El Dni no es válido");
+        }
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.departamento = departamento;
@@ -44,12 +50,36 @@ public class Empleados implements paraEmpleado {
 
     }
 
-
-
-
+    /**
+     * Calcula el salario mensual del empleado siguiendo este criterio: <br><br>
+     *
+     * salario mensual en 12 pagas<br>
+     * 20 euros extra por año<br>
+     * 110 euros extra por ayuda alimentaria<br>
+     * 50 euros extra si este mes es el cumpleaños del trabajador<br>
+     *
+     * @param mostrar si es true muestra los detalles por pantalla
+     *
+     * @return devuelve el salario mensual
+     */
     @Override
-    public float calcularSueldoMensual() {
-        return 0;
+    public double calcularSueldoMensual(boolean mostrar) {
+        double salarioMensualBase = sueldoAnual / 12;
+        double plusAnios = vigencia * calcularAntiguedadAnios();
+        int plusCumpleanios = esteMesCumpleAniosEmpleado() ? 50 : 0; //50 euros extra si este mes el empleado cumple años
+
+        double salarioEsteMes = salarioMensualBase + plusAnios + plusCumpleanios + ayudaComida;
+
+        if (mostrar) {
+            System.out.println("[+] Mostrando detalles del salario:\n");
+            System.out.printf("\tSalario mensual base = %2d" + salarioMensualBase + "%n");
+            System.out.printf("\tPlus por antigüedad = %2d" + plusAnios + "%n");
+            System.out.printf("\tPlus por ayuda alimentaria = %2d" + ayudaComida + "%n");
+            if (plusCumpleanios > 0) {
+                System.out.printf("\tPlus por cumpleaños = %2d" + plusCumpleanios + "%n");
+            }
+            System.out.printf("\n\nSalario mensual total del empleado = %2d"+salarioEsteMes);
+        }
     }
 
 
