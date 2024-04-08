@@ -27,7 +27,7 @@ public class Dni {
 -----------------------------------------------
 */
 
-    Dni(int numeroDNI){
+    public Dni(int numeroDNI){
         this.numeroDNI = numeroDNI;
     }
 
@@ -51,7 +51,7 @@ public class Dni {
         return DIGITOS_DE_CONTROL.charAt(dni % 23);
     }
 
-    private static boolean validarNIF(String numeroNIF){
+    public static boolean validarNIF(String numeroNIF){
 
         String nifRegex = "[0-9]{9}[A-Z]";
 
