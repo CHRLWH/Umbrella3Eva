@@ -52,7 +52,10 @@ public class Empleados implements paraEmpleado {
         return 0;
     }
 
-
+    /**
+     *
+     * @return devuelve la diferencia en años entre la fecha de contrato y el día de hoy
+     */
     @Override
     public int calcularAntiguedadAnios() {
         return (int) ChronoUnit.YEARS.between(fechaContrato, LocalDate.now());
@@ -68,8 +71,11 @@ public class Empleados implements paraEmpleado {
     }
 
     public String mostrarDatos(){
-        return "Codigo= "+dniEmpleado.getNumeroDNI()+"\nNombre= "+nombre+"\nApellido= "+apellido
-                +"\nDepartamento= "+departamento+"\nAños en la empresa= "+calcularAntiguedadAnios()+"\nEdad= "+ Period.between(fechaNacimiento, LocalDate.now()).getYears()
+        return "Codigo= "+dniEmpleado.getNumeroDNI()+
+                "\nNombre= "+nombre+"\nApellido= "+apellido
+                +"\nDepartamento= "+departamento+
+                "\nAños en la empresa= "+calcularAntiguedadAnios()+
+                "\nEdad= "+ Period.between(fechaNacimiento, LocalDate.now()).getYears()
                 +"\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"));
 
     }
