@@ -70,7 +70,7 @@ public class Empleados implements paraEmpleado {
 
         double salarioEsteMes = salarioMensualBase + plusAnios + plusCumpleanios + ayudaComida;
 
-        if (mostrar) {
+        if (mostrar) { //si se elige mostrar, se muestran todos los cálculos por pantalla
             System.out.println("[+] Mostrando detalles del salario:\n");
             System.out.printf("\tSalario mensual base = %2d" + salarioMensualBase + "%n");
             System.out.printf("\tPlus por antigüedad = %2d" + plusAnios + "%n");
@@ -80,6 +80,8 @@ public class Empleados implements paraEmpleado {
             }
             System.out.printf("\n\nSalario mensual total del empleado = %2d"+salarioEsteMes);
         }
+
+        return salarioEsteMes;
     }
 
     /**
@@ -100,13 +102,14 @@ public class Empleados implements paraEmpleado {
         return (LocalDate.now().getMonth() == fechaNacimiento.getMonth());
     }
 
-    public String mostrarDatos(){
-        return "Codigo= "+dniEmpleado.getNumeroDNI()+
+    public void mostrarDatos(){
+        System.out.println(
+                "Codigo= "+dniEmpleado.getNumeroDNI()+
                 "\nNombre= "+nombre+"\nApellido= "+apellido +
                 "\nDepartamento= "+departamento+
                 "\nAños en la empresa= "+calcularAntiguedadAnios()+
-                "\nEdad= "+ Period.between(fechaNacimiento, LocalDate.now()).getYears() +
-                "\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy"));
+                "\nEdad= "+ ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now()) +
+                "\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy")));
     }
 
     /**
