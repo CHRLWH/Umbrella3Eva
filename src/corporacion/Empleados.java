@@ -44,9 +44,16 @@ public class Empleados implements paraEmpleado {
         this.nombre = nombre;
         this.apellido = apellido;
         this.departamento = departamento;
-        this.sueldoAnual = sueldoAnual;
+
+        if (sueldoAnual > 10000) {
+            this.sueldoAnual = sueldoAnual;
+        } else throw new IllegalArgumentException("[!] Los empleados deben poder comer");
+
         this.fechaNacimiento = fechaNacimiento;
-        this.fechaContrato = fechaContrato;
+
+        if (fechaContrato.isAfter(fechaNacimiento)){
+            this.fechaContrato = fechaContrato;
+        } else throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
 
     }
 
