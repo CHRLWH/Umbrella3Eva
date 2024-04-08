@@ -82,7 +82,6 @@ public class Empleados implements paraEmpleado {
         }
     }
 
-
     /**
      * Calcula la diferencia en años entre la fecha de contrato y el día de hoy
      * @return diferencia de años
