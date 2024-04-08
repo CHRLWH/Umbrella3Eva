@@ -28,7 +28,7 @@ public class FuncionesSecundarias {
                 System.out.println("[!] El formato debe ser d/M/yyyy");
             }
         } while (!salirBucle);
-        return fechaNacimiento
+        return fechaNacimiento;
 
 
     }
