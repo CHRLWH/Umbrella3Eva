@@ -31,7 +31,30 @@ public class Empleados implements paraEmpleado {
     private static double vigencia = 20; //20 por año
     private static int contadorEmpleado = 0; //aumenta con cada instancia
 
-    Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato){
+    /**
+     * Constructor estandar de la clase
+     * @param dniEmpleado DNI del empleado (8 digitos y una letra)
+     * @param nombre nombre del empleado
+     * @param apellido apellido/os del empleado
+     * @param departamento departamento del empleado
+     * @param sueldoAnual salario anual en euros del empleado
+     * @param fechaNacimiento fecha de nacimiento del empleado
+     * @param fechaContrato fecha de contratación del empleado <br><br>
+     *
+     * La generacion del <b>código de empleado</b> se realiza de forma automática con {@link Empleados#generarCodEmpleado()}
+     *
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     *     <li>Si el DNI no es válido</li>
+     *     <li>Si el salario es inferior a 10000</li>
+     *     <li>Si el empleado es menor de edad <br> (diferencia entre la fecha de nacimiento y la fecha de contrato en años menor de 18)</li>
+     *     <li>Si la fecha de contrato es posterior al nacimiento</li>
+     *     <li>Si la fecha de contrato es anterior a la fecha de creacion de la empresa</li>
+     * </ul>
+     * @see Dni se hace uso de esta clase para validar y generar el DNI <br><br>
+     */
+    Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato) throws IllegalArgumentException{
 
         this.codEmpleado = generarCodEmpleado();
 
@@ -49,7 +72,9 @@ public class Empleados implements paraEmpleado {
             this.sueldoAnual = sueldoAnual;
         } else throw new IllegalArgumentException("[!] Los empleados deben poder comer");
 
-        this.fechaNacimiento = fechaNacimiento;
+        if (ChronoUnit.YEARS.between(fechaNacimiento,fechaContrato) < 18) {
+            throw new IllegalArgumentException("[!] No puedes contratar a un menor de edad");
+        } else this.fechaNacimiento = fechaNacimiento;
 
         if (fechaContrato.isBefore(fechaNacimiento)){
             throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
@@ -149,4 +174,5 @@ public class Empleados implements paraEmpleado {
         String codigo = String.format("%04d", contadorEmpleado); //añade 0 a la izquierda hasta llegar a 4 dígitos en caso de necesitarlo
         return cabecera+codigo;
     }
+
 }
