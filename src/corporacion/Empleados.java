@@ -60,7 +60,7 @@ public class Empleados implements paraEmpleado {
     }
 
     /**
-     * Calcula el salario mensual del empleado siguiendo este criterio: <br><br>
+     * <h4>Calcula el salario mensual del empleado siguiendo este criterio:</h4> <br>
      *
      * salario mensual en 12 pagas<br>
      * 20 euros extra por año<br>
