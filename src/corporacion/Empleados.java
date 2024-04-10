@@ -111,7 +111,7 @@ public class Empleados implements paraEmpleado {
         return (LocalDate.now().getMonth() == fechaNacimiento.getMonth());
     }
 
-    public void mostrarDatos(){
+    public void mostrarTodosDatos(){
         System.out.println(
                 "Codigo= "+dniEmpleado.getNumeroDNI()+
                 "\nNombre= "+nombre+"\nApellido= "+apellido +
