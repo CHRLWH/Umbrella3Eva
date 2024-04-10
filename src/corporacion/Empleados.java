@@ -36,9 +36,9 @@ public class Empleados implements paraEmpleado {
         this.codEmpleado = generarCodEmpleado();
 
         if (Dni.validarNIF(dniEmpleado)) {
-            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado));
+            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado.substring(0,8))); //TODO CORREGIR LETRA SUBsTRING
         } else {
-            throw new IllegalArgumentException("[!] El Dni no es válido");
+            throw new IllegalArgumentException("[!] El Dni no es válido, recuerda que el DNI debe tener 8 dígitos y una letra");
         }
 
         this.nombre = nombre;
