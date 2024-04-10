@@ -20,8 +20,6 @@ public class Main {
     }
 
     private static void mostrarEmpleados(List<Empleados>empleadosActuales) {
-        for (Empleados i : empleadosActuales) {
-            System.out.println(i);
-        }
+        empleadosActuales.forEach(Empleados::mostrarReducido);
     }
 }
