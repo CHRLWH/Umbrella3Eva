@@ -51,9 +51,11 @@ public class Empleados implements paraEmpleado {
 
         this.fechaNacimiento = fechaNacimiento;
 
-        if (fechaContrato.isAfter(fechaNacimiento)){
-            this.fechaContrato = fechaContrato;
-        } else throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
+        if (fechaContrato.isBefore(fechaNacimiento)){
+            throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
+        } else if (fechaContrato.isBefore(FECHA_CREACION_EMPRESA)) {
+            throw new IllegalArgumentException("[!] No puedes contratar a alguien cuando la empresa no existía");
+        } else this.fechaContrato = fechaContrato;
 
     }
 
