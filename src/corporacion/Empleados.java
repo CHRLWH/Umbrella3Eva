@@ -122,6 +122,24 @@ public class Empleados implements paraEmpleado {
     }
 
     /**
+     *<h4>Este método muestra:</h4>
+     * <ul>
+     *     <li>Codigo del empleado</li>
+     *     <li>Nombre</li>
+     *     <li>Apellido</li>
+     *     <li>Departamento</li>
+     * </ul>
+     */
+    public void mostrarReducido () {
+        System.out.println(
+                "Codigo empleado = "+codEmpleado+
+                "Nombre = "+nombre+
+                "Apellido = "+apellido+
+                "Departamento = "+departamento
+        );
+    }
+
+    /**
      * genera el código de empleado
      * @return UMBRE0001, UMBRE0002...
      */
