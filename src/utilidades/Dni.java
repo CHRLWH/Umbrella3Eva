@@ -53,7 +53,7 @@ public class Dni {
 
     public static boolean validarNIF(String numeroNIF){
 
-        String nifRegex = "[0-9]{9}[A-Z]";
+        String nifRegex = "[0-9]{8}[A-Z]";
 
         return (numeroNIF.matches(nifRegex));
     }
