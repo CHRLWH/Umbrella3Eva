@@ -4,6 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
+
 import utilidades.*;
 
 /**
@@ -192,4 +194,60 @@ public class Empleados implements paraEmpleado {
         return cabecera+codigo;
     }
 
+    public String getCodEmpleado() {
+        return codEmpleado;
+    }
+
+    public Dni getDniEmpleado() {
+        return dniEmpleado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public double getSueldoAnual() {
+        return sueldoAnual;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public LocalDate getFechaContrato() {
+        return fechaContrato;
+    }
+
+    public static double getAyudaComida() {
+        return ayudaComida;
+    }
+
+    public static double getVigencia() {
+        return vigencia;
+    }
+
+    public static int getContadorEmpleado() {
+        return contadorEmpleado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empleados empleados = (Empleados) o;
+        return Objects.equals(codEmpleado, empleados.codEmpleado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codEmpleado);
+    }
 }
