@@ -21,11 +21,19 @@ public class Main {
         empleadosActuales.add(emp1);
     }
 
-
+    /**
+     *
+     * @param empleadosList
+     */
     private static void mostrarEmpleadosReducido(List<Empleados> empleadosList) {
         empleadosList.forEach(Empleados::mostrarReducido);
     }
 
+    /**
+     *
+     * @param empleadosList
+     * @param codigoEmpleado
+     */
     private static void buscarEmpleadoPorCodigoYMostrarTodo(List<Empleados> empleadosList, String codigoEmpleado) {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
 
@@ -33,7 +41,11 @@ public class Main {
         else miEmpleado.mostrarTodosDatos();
     }
 
-
+    /**
+     *
+     * @param empleadosList
+     * @param departamento
+     */
     private static void buscarEmpleadosPorDepartamentoYMostrarReducido(List<Empleados> empleadosList, String departamento) {
         List<Empleados> empleadosDelDepartamento =
                 empleadosList.stream().filter(i -> departamento.equals(i.getDepartamento())) //filtrado por departamento
@@ -44,6 +56,12 @@ public class Main {
         else empleadosDelDepartamento.forEach(Empleados::mostrarReducido);
     }
 
+    /**
+     *
+     * @param empleadosList
+     * @param codigoEmpleado
+     */
+
     private static void mostrarSalarioEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado) {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
 
@@ -53,6 +71,13 @@ public class Main {
             miEmpleado.calcularSueldoMensual(true);
         }
     }
+
+    /**
+     *
+     * @param empleadosList
+     * @param empleadosAntiguosList
+     * @param codigoEmpleado
+     */
     private static void borrarEmpleadoPorCodigo(List<Empleados> empleadosList,List<Empleados> empleadosAntiguosList, String codigoEmpleado) {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado); //
         if (miEmpleado != null){
