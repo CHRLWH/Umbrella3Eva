@@ -54,12 +54,13 @@ public class Empleados implements paraEmpleado {
      * </ul>
      * @see Dni se hace uso de esta clase para validar y generar el DNI <br><br>
      */
+    //TODO: AÑADIR EXCEPCIONES PERSONALIZADAS :)
     Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato) throws IllegalArgumentException{
 
         this.codEmpleado = generarCodEmpleado();
 
         if (Dni.validarNIF(dniEmpleado)) {
-            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado));
+            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado.substring(0,8)));
         } else {
             throw new IllegalArgumentException("[!] El Dni no es válido");
         }
@@ -136,14 +137,30 @@ public class Empleados implements paraEmpleado {
         return (LocalDate.now().getMonth() == fechaNacimiento.getMonth());
     }
 
+    /**
+     * <h4>Muestra estos datos:</h4>
+     * <ul>
+     *     <li>Dni</li>
+     *     <li>Nombre</li>
+     *     <li>Apellido</li>
+     *     <li>Departamento</li>
+     *     <li>Años en la empresa</li>
+     *     <li>Edad</li>
+     *     <li>fecha de contrato</li>
+     * </ul>
+     */
     public void mostrarTodosDatos(){
         System.out.println(
-                "Codigo= "+dniEmpleado.getNumeroDNI()+
-                "\nNombre= "+nombre+"\nApellido= "+apellido +
-                "\nDepartamento= "+departamento+
-                "\nAños en la empresa= "+calcularAntiguedadAnios()+
-                "\nEdad= "+ ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now()) +
-                "\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy")));
+                "Codigo empleado = "+codEmpleado+
+                        "DNI = "+dniEmpleado+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
+                        "Nombre = "+nombre+
+                        "Apellido = "+apellido+
+                        "Departamento = "+departamento+
+                        "Años en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
+                        "Edad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
+                        "fecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("E',' d 'de' MMMM 'de' yyyy")) //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
+
+        );
     }
 
     /**
@@ -165,7 +182,7 @@ public class Empleados implements paraEmpleado {
     }
 
     /**
-     * genera el código de empleado
+     * genera el <b>código de empleado</b>
      * @return UMBRE0001, UMBRE0002...
      */
     private String generarCodEmpleado () {
