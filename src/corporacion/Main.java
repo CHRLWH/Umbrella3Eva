@@ -67,7 +67,7 @@ public class Main {
 
         if (miEmpleado == null) System.out.println("[!] No se ha encontrado un empleado con ese código");
         else {
-            System.out.print("El salario del mes de " + miEmpleado.getNombre() + " " + miEmpleado.getApellido() + " es de -> ");
+            System.out.print("[+] El salario del mes de " + miEmpleado.getNombre() + " " + miEmpleado.getApellido() + " es de -> ");
             miEmpleado.calcularSueldoMensual(true);
         }
     }
@@ -84,6 +84,25 @@ public class Main {
             empleadosAntiguosList.add(miEmpleado);
             empleadosList.remove(miEmpleado);
         } else System.out.println("[!] No se ha encontrado un empleado con ese código");
+    }
+
+
+    /**
+     *
+     * @param empleadosList
+     * @param codigoEmpleado
+     * @param porcentajeDeSubida
+     * @throws IllegalArgumentException
+     */
+    private static void subirSueldoEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado, double porcentajeDeSubida) throws IllegalArgumentException {
+        Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
+        if (miEmpleado == null) System.out.println("[!] No se ha encontrado un empleado con ese código");
+        else {
+            int antiguoSalarioAnual = (int) miEmpleado.getSueldoAnual();
+            miEmpleado.subirSueldoEmpleado(porcentajeDeSubida); //puede lanzar una excepcion si tu jefe es un explotador
+            System.out.println("[+] El antiguo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" era de "+antiguoSalarioAnual);
+            System.out.println("[+] El nuevo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+"es de "+miEmpleado.getSueldoAnual());
+        }
     }
     //FUNCIONALIDADES INTERNAS
 
