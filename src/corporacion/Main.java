@@ -130,6 +130,7 @@ public class Main {
     private static void darDeAltaEmpleado(){
 
             String dni = Escaneres.pedirString("Dame un Dni -> ");
+
             String nombre = Escaneres.pedirString("Dame un nombre -> ");
             String apellido = Escaneres.pedirString("Dame un Apellido -> ");
             String departamento = Escaneres.pedirString("Dame un Departamento -> ");
