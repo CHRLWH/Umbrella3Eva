@@ -106,6 +106,12 @@ public class Dni {
             this.numeroDNI = numeroDNI;
         }
     }
+
+    /**
+     * Añade ceros
+     * @param dni
+     * @return
+     */
     public static String aniadirCerosHasta9CharsDNI (String dni){
         //excepciones
         if (dni == null) throw new DniNoValidoException("[!] El Dni no puede ser nulo");
