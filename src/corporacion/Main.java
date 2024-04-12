@@ -128,6 +128,8 @@ public class Main {
     }
 
     private static void darDeAltaEmpleado(){
+        boolean salirBucleFinal = false;
+        do {
 
             String dni = Escaneres.pedirString("Dame un Dni -> ");
 
@@ -149,9 +151,16 @@ public class Main {
                     System.out.println("[!] Recuerda introducir la fecha en formato d/M/yyyy");
                 }
             } while (!salirBucle);
+            //te quiero y he tocado tú código, no me mates Carlos <3
 
-            Empleados empleado = new Empleados(dni,nombre,apellido,departamento,sueldoAnual,fechaNacimiento,fechaContrato);
+            try {
+                Empleados empleado = new Empleados(dni,nombre,apellido,departamento,sueldoAnual,fechaNacimiento,fechaContrato);
+                empleado.mostrarTodosDatos();
+                salirBucleFinal = true; //si el Builder no explota sale del bucle
+            } catch (IllegalArgumentException exc) { //el Builder devuelve excepciones heredadas de IllegalArgumentException
+                System.out.println(exc.getMessage()); //muestra el error proporcionado por el Builder
+            }
+        } while (!salirBucleFinal); //bucle externo final, el empleado se crea con éxito
 
-            empleado.mostrarTodosDatos();
     }
 }

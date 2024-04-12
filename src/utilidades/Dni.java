@@ -108,9 +108,11 @@ public class Dni {
     }
 
     /**
-     * Añade ceros
-     * @param dni
-     * @return
+     * Añade ceros hasta llegar a 9
+     * @param dni dni proporcionado
+     * @return dni con ceros a la izquierda para dnis menores a 9 char
+     *
+     * @throws DniNoValidoException si el DNI es más largo que 9 o el último caracter no es una letra
      */
     public static String aniadirCerosHasta9CharsDNI (String dni){
         //excepciones
