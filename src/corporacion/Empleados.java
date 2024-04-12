@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+import excepcionesPersonalizadas.DniNoValidoException;
 import utilidades.*;
 
 /**
@@ -47,6 +48,7 @@ public class Empleados implements ParaEmpleado {
      *
      * @throws IllegalArgumentException
      * <ul>
+     * @throws DniNoValidoException
      *     <li>Si el DNI no es válido</li>
      *     <li>Si el salario es inferior a 10000</li>
      *     <li>Si el empleado es menor de edad <br> (diferencia entre la fecha de nacimiento y la fecha de contrato en años menor de 18)</li>
@@ -63,7 +65,7 @@ public class Empleados implements ParaEmpleado {
         if (Dni.validarNIF(dniEmpleado)) {
             this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado.substring(0,8)));
         } else {
-            throw new IllegalArgumentException("[!] El Dni no es válido");
+            throw new DniNoValidoException("[!] El Dni no es válido");
         }
 
         this.nombre = nombre;

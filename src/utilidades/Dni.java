@@ -1,5 +1,9 @@
 package utilidades;
 
+import excepcionesPersonalizadas.DniNoValidoException;
+
+import java.util.zip.DataFormatException;
+
 public class Dni {
 
 
@@ -101,5 +105,18 @@ public class Dni {
         }else{
             this.numeroDNI = numeroDNI;
         }
+    }
+    public static String aniadirCerosHasta9CharsDNI (String dni){
+        //excepciones
+        if (dni == null) throw new DniNoValidoException("[!] El Dni no puede ser nulo");
+        if (dni.length() > 9) throw new DniNoValidoException("[!] Dni más largo de 9 caracteres");
+        if (!Character.isDigit(dni.charAt(dni.length()-1)))  throw new DniNoValidoException("[!] El último caracter del DNI no es una letra");
+
+        StringBuilder dniATrabajar = new StringBuilder(dni);
+        //añade ceros hasta llegar a 9 caracteres
+        while (dniATrabajar.length() < 9){
+            dniATrabajar.insert(0,0);
+        }
+        return dniATrabajar.toString();
     }
 }
