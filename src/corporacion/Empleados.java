@@ -4,6 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
+
 import utilidades.*;
 
 /**
@@ -31,14 +33,38 @@ public class Empleados implements paraEmpleado {
     private static double vigencia = 20; //20 por año
     private static int contadorEmpleado = 0; //aumenta con cada instancia
 
-    Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato){
+    /**
+     * Constructor estandar de la clase
+     * @param dniEmpleado DNI del empleado (8 digitos y una letra)
+     * @param nombre nombre del empleado
+     * @param apellido apellido/os del empleado
+     * @param departamento departamento del empleado
+     * @param sueldoAnual salario anual en euros del empleado
+     * @param fechaNacimiento fecha de nacimiento del empleado
+     * @param fechaContrato fecha de contratación del empleado <br><br>
+     *
+     * La generacion del <b>código de empleado</b> se realiza de forma automática con {@link Empleados#generarCodEmpleado()}
+     *
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     *     <li>Si el DNI no es válido</li>
+     *     <li>Si el salario es inferior a 10000</li>
+     *     <li>Si el empleado es menor de edad <br> (diferencia entre la fecha de nacimiento y la fecha de contrato en años menor de 18)</li>
+     *     <li>Si la fecha de contrato es posterior al nacimiento</li>
+     *     <li>Si la fecha de contrato es anterior a la fecha de creacion de la empresa</li>
+     * </ul>
+     * @see Dni se hace uso de esta clase para validar y generar el DNI <br><br>
+     */
+    //TODO: AÑADIR EXCEPCIONES PERSONALIZADAS :)
+    Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato) throws IllegalArgumentException{
 
         this.codEmpleado = generarCodEmpleado();
 
         if (Dni.validarNIF(dniEmpleado)) {
-            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado.substring(0,8))); //TODO CORREGIR LETRA SUBsTRING
+            this.dniEmpleado = new Dni(Integer.parseInt(dniEmpleado.substring(0,8)));
         } else {
-            throw new IllegalArgumentException("[!] El Dni no es válido, recuerda que el DNI debe tener 8 dígitos y una letra");
+            throw new IllegalArgumentException("[!] El Dni no es válido");
         }
 
         this.nombre = nombre;
@@ -49,7 +75,9 @@ public class Empleados implements paraEmpleado {
             this.sueldoAnual = sueldoAnual;
         } else throw new IllegalArgumentException("[!] Los empleados deben poder comer");
 
-        this.fechaNacimiento = fechaNacimiento;
+        if (ChronoUnit.YEARS.between(fechaNacimiento,fechaContrato) < 18) {
+            throw new IllegalArgumentException("[!] No puedes contratar a un menor de edad");
+        } else this.fechaNacimiento = fechaNacimiento;
 
         if (fechaContrato.isBefore(fechaNacimiento)){
             throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
@@ -111,14 +139,30 @@ public class Empleados implements paraEmpleado {
         return (LocalDate.now().getMonth() == fechaNacimiento.getMonth());
     }
 
+    /**
+     * <h4>Muestra estos datos:</h4>
+     * <ul>
+     *     <li>Dni</li>
+     *     <li>Nombre</li>
+     *     <li>Apellido</li>
+     *     <li>Departamento</li>
+     *     <li>Años en la empresa</li>
+     *     <li>Edad</li>
+     *     <li>fecha de contrato</li>
+     * </ul>
+     */
     public void mostrarTodosDatos(){
         System.out.println(
-                "Codigo= "+dniEmpleado.getNumeroDNI()+
-                "\nNombre= "+nombre+"\nApellido= "+apellido +
-                "\nDepartamento= "+departamento+
-                "\nAños en la empresa= "+calcularAntiguedadAnios()+
-                "\nEdad= "+ ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now()) +
-                "\nFecha de contrato= "+ fechaContrato.format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy")));
+                "Codigo empleado = "+codEmpleado+
+                        "DNI = "+dniEmpleado+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
+                        "Nombre = "+nombre+
+                        "Apellido = "+apellido+
+                        "Departamento = "+departamento+
+                        "Años en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
+                        "Edad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
+                        "fecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("E',' d 'de' MMMM 'de' yyyy")) //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
+
+        );
     }
 
     /**
@@ -140,7 +184,7 @@ public class Empleados implements paraEmpleado {
     }
 
     /**
-     * genera el código de empleado
+     * genera el <b>código de empleado</b>
      * @return UMBRE0001, UMBRE0002...
      */
     private String generarCodEmpleado () {
@@ -148,5 +192,66 @@ public class Empleados implements paraEmpleado {
         String cabecera = "UMBRE";
         String codigo = String.format("%04d", contadorEmpleado); //añade 0 a la izquierda hasta llegar a 4 dígitos en caso de necesitarlo
         return cabecera+codigo;
+    }
+    public void subirSueldoEmpleado(double porcentaje) throws IllegalArgumentException {
+        if (porcentaje < 0) throw new IllegalArgumentException("[!] No puedes bajar el salario");
+        else sueldoAnual += sueldoAnual*porcentaje/100;
+    }
+
+    public String getCodEmpleado() {
+        return codEmpleado;
+    }
+
+    public Dni getDniEmpleado() {
+        return dniEmpleado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public double getSueldoAnual() {
+        return sueldoAnual;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public LocalDate getFechaContrato() {
+        return fechaContrato;
+    }
+
+    public static double getAyudaComida() {
+        return ayudaComida;
+    }
+
+    public static double getVigencia() {
+        return vigencia;
+    }
+
+    public static int getContadorEmpleado() {
+        return contadorEmpleado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empleados empleados = (Empleados) o;
+        return Objects.equals(codEmpleado, empleados.codEmpleado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codEmpleado);
     }
 }
