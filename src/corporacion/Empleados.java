@@ -2,7 +2,6 @@ package corporacion;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ import utilidades.*;
  * @since Java 8.0
  */
 
-public class Empleados implements paraEmpleado {
+public class Empleados implements ParaEmpleado {
     //atribs empleado
     private String codEmpleado;
     private Dni dniEmpleado;
