@@ -88,6 +88,8 @@ public class Main {
 
 
     /**
+     * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
+     * Sobre ese empleado
      *
      * @param empleadosList
      * @param codigoEmpleado
