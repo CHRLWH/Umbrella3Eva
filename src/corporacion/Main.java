@@ -89,12 +89,12 @@ public class Main {
 
     /**
      * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
-     * Sobre ese empleado
+     * Sobre ese empleado se aplica una posible subida de salario anual, en caso de que el dato no sea un double o una subida, lanza una excepción
      *
-     * @param empleadosList
-     * @param codigoEmpleado
-     * @param porcentajeDeSubida
-     * @throws IllegalArgumentException
+     * @param empleadosList lista de empleados sobre la que buscar
+     * @param codigoEmpleado codigo de empleado a buscar
+     * @param porcentajeDeSubida porcentaje de subidad aplicar
+     * @throws IllegalArgumentException excepción por subida negativa de salario
      */
     private static void subirSueldoEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado, double porcentajeDeSubida) throws IllegalArgumentException {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
