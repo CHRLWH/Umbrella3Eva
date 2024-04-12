@@ -1,6 +1,7 @@
 package utilidades;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Escaneres {
@@ -14,6 +15,6 @@ public class Escaneres {
     }
     public static LocalDate pedirFechas (String mensaje){
         System.out.print(mensaje);
-        return LocalDate.parse(new Scanner(System.in).next());
+        return LocalDate.parse(new Scanner(System.in).next(), DateTimeFormatter.ofPattern("d/M/yyyy"));
     }
 }

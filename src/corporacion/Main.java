@@ -3,9 +3,13 @@ package corporacion;
 import utilidades.Escaneres;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -125,14 +129,25 @@ public class Main {
 
     private static void darDeAltaEmpleado(){
 
-
             String dni = Escaneres.pedirString("Dame un Dni -> ");
             String nombre = Escaneres.pedirString("Dame un nombre -> ");
             String apellido = Escaneres.pedirString("Dame un Apellido -> ");
             String departamento = Escaneres.pedirString("Dame un Departamento -> ");
             double sueldoAnual = Escaneres.pedirNumeros("Dame el Sueldo Anual -> ");
-            LocalDate fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento -> ");
-            LocalDate fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato -> ");
+            boolean salirBucle = false;
+            LocalDate fechaNacimiento = null;
+            LocalDate fechaContrato = null;
+
+            do {
+                try {
+                    fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento (d/M/yyyy) -> ");
+                    fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato (d/M/yyyy)-> ");
+                    //al explotar en algún punto el booleano no cambia :)
+                    salirBucle=true;
+                } catch (DateTimeParseException a) {
+                    System.out.println("[!] Recuerda introducir la fecha en formato d/M/yyyy");
+                }
+            } while (!salirBucle);
 
             Empleados empleado = new Empleados(dni,nombre,apellido,departamento,sueldoAnual,fechaNacimiento,fechaContrato);
 
