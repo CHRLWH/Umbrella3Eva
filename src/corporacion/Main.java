@@ -1,11 +1,11 @@
 package corporacion;
 
-import corporacion.Empleados;
+import utilidades.Escaneres;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -19,6 +19,8 @@ public class Main {
                 40000, LocalDate.of(2002, 12, 21), LocalDate.of(2023, 11, 20));
 
         empleadosActuales.add(emp1);
+
+        darDeAltaEmpleado();
     }
 
     /**
@@ -114,8 +116,24 @@ public class Main {
      */
     private static Empleados buscarEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado) {
         return empleadosList.stream()
-                .filter(i -> codigoEmpleado.equals(i.getCodEmpleado())) //compara el código proporcionado con el código del empleado
+                .filter(empleado -> codigoEmpleado.equals(empleado.getCodEmpleado())) //compara el código proporcionado con el código del empleado
                 .findFirst() //se detiene al encontrar el primero
                 .orElse(null); //si no lo encuentra devuelve null
+    }
+
+    private static void darDeAltaEmpleado(){
+
+
+            String dni = Escaneres.pedirString("Dame un Dni -> ");
+            String nombre = Escaneres.pedirString("Dame un nombre -> ");
+            String apellido = Escaneres.pedirString("Dame un Apellido -> ");
+            String departamento = Escaneres.pedirString("Dame un Departamento -> ");
+            double sueldoAnual = Escaneres.pedirNumeros("Dame el Sueldo Anual -> ");
+            LocalDate fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento -> ");
+            LocalDate fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato -> ");
+
+            Empleados empleado = new Empleados(dni,nombre,apellido,departamento,sueldoAnual,fechaNacimiento,fechaContrato);
+
+            empleado.mostrarTodosDatos();
     }
 }
