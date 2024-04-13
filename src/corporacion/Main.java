@@ -79,10 +79,12 @@ public class Main {
     }
 
     /**
+     * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
+     * Cambia ese objeto empleado de la lista de empleados actuales a la lista de empleados antiguos para después eliminarlo de la lista actuales
      *
-     * @param empleadosList
-     * @param empleadosAntiguosList
-     * @param codigoEmpleado
+     * @param empleadosList lista de empleados actuales
+     * @param empleadosAntiguosList lista de empleados antiguos
+     * @param codigoEmpleado codigo del empleado a borrar
      */
     private static void borrarEmpleadoPorCodigo(List<Empleados> empleadosList,List<Empleados> empleadosAntiguosList, String codigoEmpleado) {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado); //
