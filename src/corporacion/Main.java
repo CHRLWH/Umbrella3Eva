@@ -14,17 +14,35 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("[+] BIENVENIDO A LA GESTIÓN DE EMPLEADOS DE LA CORPORACIÓN UMBRELLA");
+        menu();
+    }
 
-        List<Empleados> empleadosActuales = new ArrayList<>();
-        List<Empleados> empleadosAntiguos = new ArrayList<>();
-        mostrarEmpleadosReducido(empleadosActuales);
-
-        Empleados emp1 = new Empleados("54481447J", "Carlos", "Hernandez", "Informatica",
-                40000, LocalDate.of(2002, 12, 21), LocalDate.of(2023, 11, 20));
-
-        empleadosActuales.add(emp1);
-
-        darDeAltaEmpleado();
+    private static void menu() {
+        int opcion;
+        do {
+            System.out.print(
+                    "[+] Opciones:" +
+                            "\t0 - Salir\n" +
+                            "\t1 - Mostrar todos los empleados (formato reducido)\n" +
+                            "\t2 - Dar de alta a un nuevo empleado\n" +
+                            "\t3 - Buscar a un empleado por su código\n" +
+                            "\t4 - Buscar todos los empleados de un departamento\n" +
+                            "\t5 - Borrar a un empleado por su código\n" +
+                            "\t6 - Subir el sueldo de un empleado (solo se admiten subidas)\n" +
+                            "\t7 - Mostrar el salario mensual detallado de un empleado por su código \n" +
+                            "\n[?] Escoge una opción -> ");
+            opcion = new Scanner(System.in).nextInt();
+            switch (opcion) {
+                case 0:
+                    System.out.println("[+] Saliendo...");
+                    break;
+                case 1:
+                    /*
+                    COMPLETAR
+                     */
+            }
+        } while (opcion != 0);
     }
 
     /**
