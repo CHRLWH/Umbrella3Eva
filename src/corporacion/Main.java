@@ -92,9 +92,10 @@ public class Main {
      */
     private static void borrarEmpleadoPorCodigo(List<Empleados> empleadosList,List<Empleados> empleadosAntiguosList, String codigoEmpleado) {
         Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado); //
-        if (miEmpleado != null){
+        if (miEmpleado != null){ //se encuentra un empleado
             empleadosAntiguosList.add(miEmpleado);
             empleadosList.remove(miEmpleado);
+            System.out.println("[+] El empleado "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" ha sido borrado con éxito");
         } else System.out.println("[!] No se ha encontrado un empleado con ese código");
     }
 
