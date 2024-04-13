@@ -63,9 +63,12 @@ public class Main {
     }
 
     /**
+     * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
+     * Muestra el salario detallado de ese empleado
+     * Si no se encuentra un empleado muestra un mensaje indicando que no se ha encontrado al empleado
      *
-     * @param empleadosList
-     * @param codigoEmpleado
+     * @param empleadosList lista de empleados
+     * @param codigoEmpleado codigo del empleado a buscar
      */
 
     private static void mostrarSalarioEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado) {
@@ -81,6 +84,7 @@ public class Main {
     /**
      * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
      * Cambia ese objeto empleado de la lista de empleados actuales a la lista de empleados antiguos para después eliminarlo de la lista actuales
+     * Si no se encuentra un empleado muestra un mensaje indicando que no se ha encontrado al empleado
      *
      * @param empleadosList lista de empleados actuales
      * @param empleadosAntiguosList lista de empleados antiguos
