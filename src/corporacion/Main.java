@@ -48,9 +48,11 @@ public class Main {
     }
 
     /**
+     * Busca a todos los empleados pertenecientes a un departamento en concreto<br>
+     * Sobre estos empleados se hace uso del método<br> {@link Empleados#mostrarReducido()}
      *
-     * @param empleadosList
-     * @param departamento
+     * @param empleadosList lista de empleados sobre la que se efectúa la búsqueda
+     * @param departamento departamento de los empleados a buscar
      */
     private static void buscarEmpleadosPorDepartamentoYMostrarReducido(List<Empleados> empleadosList, String departamento) {
         List<Empleados> empleadosDelDepartamento =
@@ -151,7 +153,7 @@ public class Main {
             do {
                 try {
                     fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento (d/M/yyyy) -> ");
-                    fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato (d/M/yyyy)-> ");
+                    fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato (d/M/yyyy) -> ");
                     //al explotar en algún punto el booleano no cambia :)
                     salirBucle=true;
                 } catch (DateTimeParseException a) {
