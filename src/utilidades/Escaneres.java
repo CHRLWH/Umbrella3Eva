@@ -66,7 +66,7 @@ public class Escaneres {
                 String temporal = pedirString(mensaje).trim();
                 if (Pattern.matches(".*\\d.*", temporal)) //comprueba que no contenga números
                     throw new NombreOApellidoConNumerosException("[!] Un nombre o apellido no puede contener números");
-                else aDevolver = Character.toUpperCase(temporal.charAt(0)) + temporal.substring(1); //convierte la primera letra en mayúscula y asigna la cadena restante para devolver
+                else aDevolver = Character.toUpperCase(temporal.charAt(0)) + temporal.substring(1).toLowerCase(); //convierte la primera letra en mayúscula, el resto de la cadena en minúscula y asigna la cadena restante para devolver
             } catch (NombreOApellidoConNumerosException exc) {
                 System.out.println(exc.getMessage());
             }

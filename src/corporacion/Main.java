@@ -60,29 +60,29 @@ public class Main {
                     case 3:
                         buscarEmpleadoPorCodigoYMostrarTodo(
                                 empleadosList,
-                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 4:
                         buscarEmpleadosPorDepartamentoYMostrarReducido(
                                 empleadosList,
-                                Escaneres.pedirDepartamento("Introduce el nombre del departamento a buscar --> "));
+                                Escaneres.pedirDepartamento("[?] Introduce el nombre del departamento a buscar --> "));
                         break;
                     case 5:
                         borrarEmpleadoPorCodigo(
                                 empleadosList,
                                 empleadosAntiguosList,
-                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 6:
                         subirSueldoEmpleadoPorCodigo(
                                 empleadosList,
-                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "),
-                                Escaneres.pedirPorcentajeDeSubida("Introduce el porcentaje que quieres subir --> "));
+                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "),
+                                Escaneres.pedirPorcentajeDeSubida("[?] Introduce el porcentaje que quieres subir --> "));
                         break;
                     case 7:
                         mostrarSalarioEmpleadoPorCodigo(
                                 empleadosList,
-                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "));
                         break;
                     default:
                         System.out.println("[!] Se debe escoger un número entre "+opcionMinima+" y "+opcionMaxima+"\n");
@@ -235,8 +235,8 @@ public class Main {
 
                 do {
                     try {
-                        fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento (d/M/yyyy) -> ");
-                        fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato (d/M/yyyy) -> ");
+                        fechaNacimiento = Escaneres.pedirFechas("[?] Dame la Fecha de Nacimiento (d/M/yyyy) -> ");
+                        fechaContrato = Escaneres.pedirFechas("[?] Dame la fecha de inicio del contrato (d/M/yyyy) -> ");
                         //al explotar en algún punto el booleano no cambia :)
                         salirBucle = true;
                     } catch (DateTimeParseException a) {
