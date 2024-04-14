@@ -59,7 +59,7 @@ public class Dni {
 
         String nifRegex = "[0-9]{8}[A-Z]";
 
-        return (numeroNIF.matches(nifRegex));
+        return (numeroNIF.matches(nifRegex) && numeroNIF.charAt(8) == calcularLetraNIF(Integer.parseInt(numeroNIF.substring(0,8))));
     }
 
     private static char extraerLetraNIF (String nif){
