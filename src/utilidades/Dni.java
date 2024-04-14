@@ -118,7 +118,7 @@ public class Dni {
         //excepciones
         if (dni == null) throw new DniNoValidoException("[!] El Dni no puede ser nulo");
         if (dni.length() > 9) throw new DniNoValidoException("[!] Dni más largo de 9 caracteres");
-        if (!Character.isDigit(dni.charAt(dni.length()-1)))  throw new DniNoValidoException("[!] El último caracter del DNI no es una letra");
+        if (Character.isDigit(dni.charAt(dni.length()-1)))  throw new DniNoValidoException("[!] El último caracter del DNI no es una letra");
 
         StringBuilder dniATrabajar = new StringBuilder(dni);
         //añade ceros hasta llegar a 9 caracteres
@@ -126,5 +126,21 @@ public class Dni {
             dniATrabajar.insert(0,0);
         }
         return dniATrabajar.toString();
+    }
+    public static String pedirDniHastaRecibirUnoValido () {
+
+        String dni = null;
+        do {
+            try {
+                String dniTemporal = Escaneres.pedirString("[?] Dame un Dni -> ");
+                dniTemporal = Dni.aniadirCerosHasta9CharsDNI(dniTemporal); //añade ceros en caso de ser necesario
+                if (Dni.validarNIF(dniTemporal)) {
+                    dni = dniTemporal; //asigna y sale del bucle
+                } else throw new DniNoValidoException("[!] El DNI no es válido");
+            } catch (DniNoValidoException exc) {
+                System.out.println(exc.getMessage());
+            }
+        } while (dni == null);
+        return dni;
     }
 }

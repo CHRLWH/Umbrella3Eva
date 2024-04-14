@@ -1,5 +1,7 @@
 package corporacion;
 
+import excepcionesPersonalizadas.DniNoValidoException;
+import utilidades.Dni;
 import utilidades.Escaneres;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -11,7 +13,7 @@ import java.util.stream.Collectors;
 public class Main {
 
         public static void main(String[] args) {
-            System.out.println("[+] BIENVENIDO A LA GESTIÓN DE EMPLEADOS DE LA CORPORACIÓN UMBRELLA");
+            System.out.println("[+] BIENVENIDO A LA GESTIÓN DE EMPLEADOS DE LA CORPORACIÓN UMBRELLA\n");
             List<Empleados> empleadosList = new ArrayList<>();
             List<Empleados> empleadosAntiguosList = new ArrayList<>();
             menu(empleadosList,empleadosAntiguosList);
@@ -22,7 +24,7 @@ public class Main {
             int opcion;
             do {
                 System.out.print(
-                        "[+] Opciones:" +
+                        "[+] Opciones:\n" +
                                 "\t0 - Salir\n" +
                                 "\t1 - Mostrar todos los empleados (formato reducido)\n" +
                                 "\t2 - Dar de alta a un nuevo empleado\n" +
@@ -184,7 +186,8 @@ public class Main {
             boolean salirBucleFinal = false;
             do {
 
-                String dni = Escaneres.pedirString("Dame un Dni -> ");
+                String dni = Dni.pedirDniHastaRecibirUnoValido();
+
                 String nombre = Escaneres.pedirString("Dame un nombre -> ");
                 String apellido = Escaneres.pedirString("Dame un Apellido -> ");
                 String departamento = Escaneres.pedirString("Dame un Departamento -> ");
