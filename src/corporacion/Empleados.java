@@ -158,14 +158,14 @@ public class Empleados implements ParaEmpleado {
      */
     public void mostrarTodosDatos(){
         System.out.println(
-                "Codigo empleado = "+codEmpleado+
-                        "DNI = "+dniEmpleado+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
-                        "Nombre = "+nombre+
-                        "Apellido = "+apellido+
-                        "Departamento = "+departamento+
-                        "Años en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
-                        "Edad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
-                        "fecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("E',' d 'de' MMMM 'de' yyyy")) //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
+                "\nCodigo empleado = "+codEmpleado+
+                        "\nDNI = "+dniEmpleado.getNumeroNIF()+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
+                        "\nNombre = "+nombre+
+                        "\nApellido = "+apellido+
+                        "\nDepartamento = "+departamento+
+                        "\nAños en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
+                        "\nEdad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
+                        "\nfecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("E',' d 'de' MMMM 'de' yyyy"))+"\n" //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
 
         );
     }
@@ -181,10 +181,10 @@ public class Empleados implements ParaEmpleado {
      */
     public void mostrarReducido () {
         System.out.println(
-                "Codigo empleado = "+codEmpleado+
-                "Nombre = "+nombre+
-                "Apellido = "+apellido+
-                "Departamento = "+departamento
+                "\nCodigo empleado = "+codEmpleado+
+                "\nNombre = "+nombre+
+                "\nApellido = "+apellido+
+                "\nDepartamento = "+departamento
         );
     }
 

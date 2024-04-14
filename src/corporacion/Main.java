@@ -17,6 +17,11 @@ public class Main {
             System.out.println("[+] BIENVENIDO A LA GESTIÓN DE EMPLEADOS DE LA CORPORACIÓN UMBRELLA");
             List<Empleados> empleadosList = new ArrayList<>();
             List<Empleados> empleadosAntiguosList = new ArrayList<>();
+
+            //empleados de inicio ejemplo
+            empleadosList.add(new Empleados("16233336M","Pepe","Perez","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
+            empleadosList.add(new Empleados("57997939N","Juana","González","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
+
             menu(empleadosList,empleadosAntiguosList);
         }
 
