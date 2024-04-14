@@ -157,13 +157,13 @@ public class Empleados implements ParaEmpleado {
     public void mostrarTodosDatos(){
         System.out.println(
                 "\nCodigo empleado = "+codEmpleado+
-                        "\nDNI = "+Dni.aniadirCerosHasta9CharsDNI(dniEmpleado.getNumeroNIF())+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
+                        "\nDNI = "+Dni.aniadirCerosHasta9CharsDNI(dniEmpleado.getNumeroNIF())+
                         "\nNombre = "+nombre+
                         "\nApellido = "+apellido+
                         "\nDepartamento = "+departamento+
                         "\nAños en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
                         "\nEdad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
-                        "\nfecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("EEEE',' d 'de' MMMM 'de' yyyy"))+"\n" //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
+                        "\nfecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("EEEE',' d 'de' MMMM 'de' yyyy"))+"\n"
 
         );
     }
