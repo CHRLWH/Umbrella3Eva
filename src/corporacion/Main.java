@@ -15,10 +15,18 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         System.out.println("[+] BIENVENIDO A LA GESTIÓN DE EMPLEADOS DE LA CORPORACIÓN UMBRELLA");
-        menu();
+        List<Empleados> empleadosList = new ArrayList<>();
+        List<Empleados> empleadosAntiguosList = new ArrayList<>();
+        menu(empleadosList,empleadosAntiguosList);
     }
 
-    private static void menu() {
+    private static void menu(List<Empleados> empleadosList, List<Empleados> empleadosAntiguosList) {
+        String codigoEmpleado = null;
+
+        String departamento = null;
+
+        double porcentajeDeSubida = 0.0;
+
         int opcion;
         do {
             System.out.print(
@@ -38,12 +46,29 @@ public class Main {
                     System.out.println("[+] Saliendo...");
                     break;
                 case 1:
-                    /*
-                    COMPLETAR
-                     */
+                    mostrarEmpleadosReducido(empleadosList);
+                    break;
+                case 2:
+                    darDeAltaEmpleado();
+                    break;
+                case 3:
+                    buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
+                    break;
+                case 4:
+                    buscarEmpleadosPorDepartamentoYMostrarReducido(empleadosList,departamento);
+                    break;
+                case 5:
+                    borrarEmpleadoPorCodigo(empleadosList,empleadosAntiguosList,codigoEmpleado);
+                    break;
+                case 6:
+                    subirSueldoEmpleadoPorCodigo(empleadosList,codigoEmpleado,porcentajeDeSubida);
+                    break;
+                case 7:
+                    mostrarSalarioEmpleadoPorCodigo(empleadosList,codigoEmpleado);
             }
         } while (opcion != 0);
     }
+
 
     /**
      *
