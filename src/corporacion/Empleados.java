@@ -107,7 +107,7 @@ public class Empleados implements ParaEmpleado {
     public double calcularSueldoMensual(boolean mostrar) {
         double salarioMensualBase = sueldoAnual / 12;
         double plusAnios = vigencia * calcularAntiguedadAnios();
-        int plusCumpleanios = esteMesCumpleAniosEmpleado() ? 50 : 0; //50 euros extra si este mes el empleado cumple años
+        double plusCumpleanios = esteMesCumpleAniosEmpleado() ? 50 : 0; //50 euros extra si este mes el empleado cumple años
 
         double salarioEsteMes = salarioMensualBase + plusAnios + plusCumpleanios + ayudaComida;
 

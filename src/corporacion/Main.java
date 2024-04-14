@@ -1,7 +1,6 @@
 package corporacion;
 
 import excepcionesPersonalizadas.*;
-import org.omg.CORBA.TRANSACTION_MODE;
 import utilidades.Dni;
 import utilidades.Escaneres;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class Main {
 
             //empleados de inicio ejemplo
             empleadosList.add(new Empleados("16233336M","Pepe","Pérez","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
-            empleadosList.add(new Empleados("57997939N","Juana","González","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
+            empleadosList.add(new Empleados("57997939N","Juana","González","Informatica",50000,LocalDate.of(2000,4,1),LocalDate.now()));
 
             menu(empleadosList,empleadosAntiguosList);
         }
