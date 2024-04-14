@@ -25,7 +25,12 @@ public class Main {
             menu(empleadosList,empleadosAntiguosList);
         }
 
-        private static void menu(List<Empleados> empleadosList, List<Empleados> empleadosAntiguosList) {
+    /**
+     * Menú principal de opciones
+     * @param empleadosList lista de empleados actuales
+     * @param empleadosAntiguosList lista de empleados antiguos
+     */
+    private static void menu(List<Empleados> empleadosList, List<Empleados> empleadosAntiguosList) {
            // departamento;
             int opcionMinima = 0, opcionMaxima = 7; //modificar estos valores si aumenta el número de opciones del menú
 
@@ -90,17 +95,17 @@ public class Main {
         }
 
         /**
-         *
-         * @param empleadosList
+         * Hace un forEach de la lista y a cada empleado le pasa el método {@link Empleados#mostrarReducido()}
+         * @param empleadosList lista de empleados que recorre
          */
         private static void mostrarEmpleadosReducido(List<Empleados> empleadosList) {
             empleadosList.forEach(Empleados::mostrarReducido);
         }
 
         /**
-         *
-         * @param empleadosList
-         * @param codigoEmpleado
+         * Busca a un empleado usando el método {@link Main#buscarEmpleadoPorCodigo(List, String)}, si encuentra a un empleado en la lista, ejecuta el método {@link Empleados#mostrarTodosDatos()}
+         * @param empleadosList lista de empleados sobre la que buscar
+         * @param codigoEmpleado codigo del empleado a buscar
          */
         private static void buscarEmpleadoPorCodigoYMostrarTodo(List<Empleados> empleadosList, String codigoEmpleado) {
             Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
