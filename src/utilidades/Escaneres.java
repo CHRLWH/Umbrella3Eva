@@ -32,7 +32,7 @@ public class Escaneres {
             if (!codigoEmpleado.matches(codEmpleadoRegex)) {
                 System.out.println("[!] Codigo de empleado NO valido");
             } else {
-                System.out.print("[+] Codigo de empleado valido");
+                System.out.println("[+] Codigo de empleado valido");
 
             }
         }while (!codigoEmpleado.matches(codEmpleadoRegex));

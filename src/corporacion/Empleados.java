@@ -165,7 +165,7 @@ public class Empleados implements ParaEmpleado {
                         "\nDepartamento = "+departamento+
                         "\nAños en la empresa = "+ChronoUnit.YEARS.between(fechaContrato,LocalDate.now())+
                         "\nEdad actual = "+ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now())+
-                        "\nfecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("E',' d 'de' MMMM 'de' yyyy"))+"\n" //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
+                        "\nfecha de contrato = "+fechaContrato.format(DateTimeFormatter.ofPattern("EEEE',' d 'de' MMMM 'de' yyyy"))+"\n" //TODO: comprobar formato (creo que está bien pero no tengo tiempo ahora - Aitor)
 
         );
     }

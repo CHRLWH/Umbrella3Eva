@@ -119,7 +119,7 @@ public class Main {
          */
         private static void buscarEmpleadosPorDepartamentoYMostrarReducido(List<Empleados> empleadosList, String departamento) {
             List<Empleados> empleadosDelDepartamento =
-                    empleadosList.stream().filter(i -> departamento.equals(i.getDepartamento())) //filtrado por departamento
+                    empleadosList.stream().filter(i -> departamento.equalsIgnoreCase(i.getDepartamento())) //filtrado por departamento
                             .collect(Collectors.toList());
 
             if (empleadosDelDepartamento.isEmpty())
