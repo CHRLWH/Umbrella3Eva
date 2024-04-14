@@ -57,6 +57,7 @@ public class Dni {
 
     public static boolean validarNIF(String numeroNIF){
 
+        numeroNIF = numeroNIF.toUpperCase();
         String nifRegex = "[0-9]{8}[A-Z]";
 
         return (numeroNIF.matches(nifRegex) && numeroNIF.charAt(8) == calcularLetraNIF(Integer.parseInt(numeroNIF.substring(0,8))));
@@ -140,7 +141,7 @@ public class Dni {
         String dni = null;
         do {
             try {
-                String dniTemporal = Escaneres.pedirString("[?] Dame un Dni -> ");
+                String dniTemporal = Escaneres.pedirString("[?] Dame un Dni -> ").toUpperCase();
                 dniTemporal = Dni.aniadirCerosHasta9CharsDNI(dniTemporal); //añade ceros en caso de ser necesario
                 if (Dni.validarNIF(dniTemporal)) {
                     dni = dniTemporal; //asigna y sale del bucle
