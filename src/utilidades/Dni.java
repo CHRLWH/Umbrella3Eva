@@ -108,7 +108,8 @@ public class Dni {
     }
 
     /**
-     * Añade ceros hasta llegar a 9
+     * Añade ceros a la izquierda hasta llegar a 9<br><br>
+     * Ejemplo: 4755652B -> 04755652B
      * @param dni dni proporcionado
      * @return dni con ceros a la izquierda para dnis menores a 9 char
      *
@@ -127,6 +128,13 @@ public class Dni {
         }
         return dniATrabajar.toString();
     }
+
+    /**
+     * Pide por teclado un DNI, en caso de que no ser válido, suelta un error personalizado y vuelve a solicitarlo<br><br>
+     * Este método hace uso de {@link Dni#aniadirCerosHasta9CharsDNI(String)} tanto para la comprobación de los errores, como para el formateo de cadenas válidas con menos de 9 caracteres<br><br>
+     * Este método maneja sus erorres de manera interna sin lanzar ninguna excepción
+     * @return DNI español válido
+     */
     public static String pedirDniHastaRecibirUnoValido () {
 
         String dni = null;
