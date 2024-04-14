@@ -118,7 +118,6 @@ public class Main {
          * @param empleadosList lista de empleados
          * @param codigoEmpleado codigo del empleado a buscar
          */
-
         private static void mostrarSalarioEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado) {
             Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
 
@@ -146,7 +145,6 @@ public class Main {
                 System.out.println("[+] El empleado "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" ha sido borrado con éxito");
             } else System.out.println("[!] No se ha encontrado un empleado con ese código");
         }
-
 
         /**
          * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
@@ -182,12 +180,11 @@ public class Main {
                     .orElse(null); //si no lo encuentra devuelve null
         }
 
-        private static void darDeAltaEmpleado(){
+        private static void darDeAltaEmpleado() {
             boolean salirBucleFinal = false;
             do {
 
                 String dni = Escaneres.pedirString("Dame un Dni -> ");
-
                 String nombre = Escaneres.pedirString("Dame un nombre -> ");
                 String apellido = Escaneres.pedirString("Dame un Apellido -> ");
                 String departamento = Escaneres.pedirString("Dame un Departamento -> ");
@@ -201,7 +198,7 @@ public class Main {
                         fechaNacimiento = Escaneres.pedirFechas("Dame la Fecha de Nacimiento (d/M/yyyy) -> ");
                         fechaContrato = Escaneres.pedirFechas("Dame la fecha de inicio del contrato (d/M/yyyy) -> ");
                         //al explotar en algún punto el booleano no cambia :)
-                        salirBucle=true;
+                        salirBucle = true;
                     } catch (DateTimeParseException a) {
                         System.out.println("[!] Recuerda introducir la fecha en formato d/M/yyyy");
                     }
@@ -210,13 +207,13 @@ public class Main {
                 //He puesto mi fecha de nacimiento y pone que soy menor de edad
 
                 try {
-                    Empleados empleado = new Empleados(dni,nombre,apellido,departamento,sueldoAnual,fechaNacimiento,fechaContrato);
+                    Empleados empleado = new Empleados(dni, nombre, apellido, departamento, sueldoAnual, fechaNacimiento, fechaContrato);
                     empleado.mostrarTodosDatos();
                     salirBucleFinal = true; //si el Builder no explota sale del bucle
-                } catch (IllegalArgumentException exc) { //el Builder devuelve excepciones heredadas de IllegalArgumentException
+                } catch (
+                        IllegalArgumentException exc) { //el Builder devuelve excepciones heredadas de IllegalArgumentException
                     System.out.println(exc.getMessage()); //muestra el error proporcionado por el Builder
                 }
             } while (!salirBucleFinal); //bucle externo final, el empleado se crea con éxito
-
         }
-    }
+}
