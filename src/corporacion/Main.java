@@ -1,15 +1,11 @@
 package corporacion;
 
 import utilidades.Escaneres;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -48,19 +44,31 @@ public class Main {
                         darDeAltaEmpleado();
                         break;
                     case 3:
-                        buscarEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                        buscarEmpleadoPorCodigoYMostrarTodo(
+                                empleadosList,
+                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 4:
-                        buscarEmpleadosPorDepartamentoYMostrarReducido(empleadosList,Escaneres.pedirDepartamento("Introduce el nombre del departamento a buscar --> "));
+                        buscarEmpleadosPorDepartamentoYMostrarReducido(
+                                empleadosList,
+                                Escaneres.pedirDepartamento("Introduce el nombre del departamento a buscar --> "));
                         break;
                     case 5:
-                        borrarEmpleadoPorCodigo(empleadosList,empleadosAntiguosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                        borrarEmpleadoPorCodigo(
+                                empleadosList,
+                                empleadosAntiguosList,
+                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 6:
-                        subirSueldoEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "),Escaneres.pedirPorcentajeDeSubida("Introduce el porcentaje que quieres subir --> "));
+                        subirSueldoEmpleadoPorCodigo(
+                                empleadosList,
+                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "),
+                                Escaneres.pedirPorcentajeDeSubida("Introduce el porcentaje que quieres subir --> "));
                         break;
                     case 7:
-                        mostrarSalarioEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
+                        mostrarSalarioEmpleadoPorCodigo(
+                                empleadosList,
+                                Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                 }
             } while (opcion != 0);
         }
