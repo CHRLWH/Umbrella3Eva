@@ -1,6 +1,7 @@
 package corporacion;
 
 import excepcionesPersonalizadas.*;
+import org.omg.CORBA.TRANSACTION_MODE;
 import utilidades.Dni;
 import utilidades.Escaneres;
 import java.time.LocalDate;
@@ -76,8 +77,7 @@ public class Main {
                     case 6:
                         subirSueldoEmpleadoPorCodigo(
                                 empleadosList,
-                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "),
-                                Escaneres.pedirPorcentajeDeSubida("[?] Introduce el porcentaje que quieres subir --> "));
+                                Escaneres.pedirCodigoEmpleado("[?] Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 7:
                         mostrarSalarioEmpleadoPorCodigo(
@@ -165,21 +165,24 @@ public class Main {
 
         /**
          * Busca a un empleado haciendo uso de la función: {@link Main#buscarEmpleadoPorCodigo(List, String)} <br>
-         * Sobre ese empleado se aplica una posible subida de salario anual, en caso de que el dato no sea un double o una subida, lanza una excepción
+         * Sobre ese empleado se aplica una posible subida de salario anual
          *
          * @param empleadosList lista de empleados sobre la que buscar
          * @param codigoEmpleado codigo de empleado a buscar
-         * @param porcentajeDeSubida porcentaje de subidad aplicar
-         * @throws IllegalArgumentException excepción por subida negativa de salario
          */
-        private static void subirSueldoEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado, double porcentajeDeSubida) throws IllegalArgumentException {
+        private static void subirSueldoEmpleadoPorCodigo(List<Empleados> empleadosList, String codigoEmpleado){
             Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
             if (miEmpleado == null) System.out.println("[!] No se ha encontrado un empleado con ese código");
-            else {
+            else { //se encuentra a un empleado con ese código
                 int antiguoSalarioAnual = (int) miEmpleado.getSueldoAnual();
-                miEmpleado.subirSueldoEmpleado(porcentajeDeSubida); //puede lanzar una excepcion si tu jefe es un explotador
-                System.out.println("[+] El antiguo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" era de "+antiguoSalarioAnual);
-                System.out.println("[+] El nuevo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+"es de "+miEmpleado.getSueldoAnual());
+                try {
+                    double porcentajeDeSubida = Escaneres.pedirPorcentajeDeSubida("[?] Introduce el porcentaje que quieres subir --> "); //pide el porcentaje de subida
+                    miEmpleado.subirSueldoEmpleado(porcentajeDeSubida); //puede lanzar una excepcion si tu jefe es un explotador
+                    System.out.println("[+] El antiguo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" era de "+antiguoSalarioAnual);
+                    System.out.println("[+] El nuevo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+"es de "+miEmpleado.getSueldoAnual());
+                } catch (JefeBajaSueldosException exc) {
+                    System.out.println(exc.getMessage());
+                }
             }
         }
         //FUNCIONALIDADES INTERNAS

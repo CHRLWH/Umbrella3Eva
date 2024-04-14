@@ -198,8 +198,8 @@ public class Empleados implements ParaEmpleado {
         String codigo = String.format("%04d", contadorEmpleado); //añade 0 a la izquierda hasta llegar a 4 dígitos en caso de necesitarlo
         return cabecera+codigo;
     }
-    public void subirSueldoEmpleado(double porcentaje) throws IllegalArgumentException {
-        if (porcentaje < 0) throw new IllegalArgumentException("[!] No puedes bajar el salario");
+    public void subirSueldoEmpleado(double porcentaje) throws JefeBajaSueldosException {
+        if (porcentaje < 0) throw new JefeBajaSueldosException("[!] No puedes bajar el salario");
         else sueldoAnual += sueldoAnual*porcentaje/100;
     }
 
