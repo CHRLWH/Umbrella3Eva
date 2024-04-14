@@ -61,7 +61,6 @@ public class Empleados implements ParaEmpleado {
      * </ul>
      * @see Dni se hace uso de esta clase para validar y generar el DNI <br><br>
      */
-    //TODO: AÑADIR EXCEPCIONES PERSONALIZADAS :)
     Empleados (String dniEmpleado, String nombre, String apellido, String departamento, double sueldoAnual, LocalDate fechaNacimiento, LocalDate fechaContrato) throws IllegalArgumentException{
 
         this.codEmpleado = generarCodEmpleado();
@@ -113,16 +112,15 @@ public class Empleados implements ParaEmpleado {
         double salarioEsteMes = salarioMensualBase + plusAnios + plusCumpleanios + ayudaComida;
 
         if (mostrar) { //si se elige mostrar, se muestran todos los cálculos por pantalla
-            System.out.println("[+] Mostrando detalles del salario:\n");
-            System.out.printf("\tSalario mensual base = %2d" + salarioMensualBase + "%n");
-            System.out.printf("\tPlus por antigüedad = %2d" + plusAnios + "%n");
-            System.out.printf("\tPlus por ayuda alimentaria = %2d" + ayudaComida + "%n");
+            System.out.println("[+] Mostrando detalles del salario de "+nombre+" "+apellido+" :\n");
+            System.out.printf("\tSalario mensual base = %.2f%n", salarioMensualBase);
+            System.out.printf("\tPlus por antigüedad = %.2f%n", plusAnios);
+            System.out.printf("\tPlus por ayuda alimentaria = %.2f%n", ayudaComida);
             if (plusCumpleanios > 0) {
-                System.out.printf("\tPlus por cumpleaños = %2d" + plusCumpleanios + "%n");
+                System.out.printf("\tPlus por cumpleaños = %.2f%n", plusCumpleanios);
             }
-            System.out.printf("\n\nSalario mensual total del empleado = %2d"+salarioEsteMes);
+            System.out.printf("%nSalario mensual total del empleado = %.2f%n", salarioEsteMes);
         }
-
         return salarioEsteMes;
     }
 
@@ -159,7 +157,7 @@ public class Empleados implements ParaEmpleado {
     public void mostrarTodosDatos(){
         System.out.println(
                 "\nCodigo empleado = "+codEmpleado+
-                        "\nDNI = "+dniEmpleado.getNumeroNIF()+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
+                        "\nDNI = "+Dni.aniadirCerosHasta9CharsDNI(dniEmpleado.getNumeroNIF())+ //TODO: comprobar que se añaden los ceros en DNI menores a 8 números y comprobar que imprime la letra
                         "\nNombre = "+nombre+
                         "\nApellido = "+apellido+
                         "\nDepartamento = "+departamento+

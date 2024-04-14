@@ -20,7 +20,7 @@ public class Main {
             List<Empleados> empleadosAntiguosList = new ArrayList<>();
 
             //empleados de inicio ejemplo
-            empleadosList.add(new Empleados("16233336M","Pepe","Perez","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
+            empleadosList.add(new Empleados("16233336M","Pepe","Pérez","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
             empleadosList.add(new Empleados("57997939N","Juana","González","Informatica",50000,LocalDate.of(2000,1,1),LocalDate.now()));
 
             menu(empleadosList,empleadosAntiguosList);
@@ -140,7 +140,6 @@ public class Main {
 
             if (miEmpleado == null) System.out.println("[!] No se ha encontrado un empleado con ese código");
             else {
-                System.out.print("[+] El salario del mes de " + miEmpleado.getNombre() + " " + miEmpleado.getApellido() + " es de -> ");
                 miEmpleado.calcularSueldoMensual(true);
             }
         }
@@ -174,12 +173,12 @@ public class Main {
             Empleados miEmpleado = buscarEmpleadoPorCodigo(empleadosList,codigoEmpleado);
             if (miEmpleado == null) System.out.println("[!] No se ha encontrado un empleado con ese código");
             else { //se encuentra a un empleado con ese código
-                int antiguoSalarioAnual = (int) miEmpleado.getSueldoAnual();
+                double antiguoSalarioAnual = miEmpleado.getSueldoAnual();
                 try {
                     double porcentajeDeSubida = Escaneres.pedirPorcentajeDeSubida("[?] Introduce el porcentaje que quieres subir --> "); //pide el porcentaje de subida
                     miEmpleado.subirSueldoEmpleado(porcentajeDeSubida); //puede lanzar una excepcion si tu jefe es un explotador
-                    System.out.println("[+] El antiguo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+" era de "+antiguoSalarioAnual);
-                    System.out.println("[+] El nuevo salario anual de "+miEmpleado.getNombre()+" "+miEmpleado.getApellido()+"es de "+miEmpleado.getSueldoAnual());
+                    System.out.printf("[+] El antiguo salario anual de %s %s era de %.2f%n", miEmpleado.getNombre(), miEmpleado.getApellido(), antiguoSalarioAnual);
+                    System.out.printf("[+] El nuevo salario anual de %s %s es de %.2f%n", miEmpleado.getNombre(), miEmpleado.getApellido(), miEmpleado.getSueldoAnual());
                 } catch (JefeBajaSueldosException exc) {
                     System.out.println(exc.getMessage());
                 }
