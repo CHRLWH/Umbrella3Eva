@@ -76,7 +76,7 @@ public class Empleados implements ParaEmpleado {
             this.sueldoAnual = sueldoAnual;
         } else throw new IllegalArgumentException("[!] Los empleados deben poder comer");
 
-        if (ChronoUnit.YEARS.between(fechaNacimiento,fechaContrato) < 18) {
+        if (ChronoUnit.YEARS.between(fechaNacimiento,LocalDate.now()) < 18) {
             throw new IllegalArgumentException("[!] No puedes contratar a un menor de edad");
         } else this.fechaNacimiento = fechaNacimiento;
 
