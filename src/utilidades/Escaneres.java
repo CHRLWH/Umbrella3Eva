@@ -1,8 +1,11 @@
 package utilidades;
 
+import excepcionesPersonalizadas.NombreOApellidoConNumerosException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Escaneres {
     public static String pedirString (String mensaje){
@@ -47,5 +50,25 @@ public class Escaneres {
         double porcentajeDeSubida =  new Scanner(System.in).nextInt();
 
         return porcentajeDeSubida;
+    }
+
+    /**
+     * Este método pide un nombre o apellido válido
+     * @param mensaje mensaje a mostrar
+     * @return Devuelve un nombre o apellido, sin números, sin espacios al principio o final y con la primera letra en mayúscula
+     */
+    public static String pedirNombreOApellido (String mensaje) {
+        String aDevolver = null;
+        do { //no sale del bucle hasta recibir un nombre o apellido que solo contenga letras
+            try {
+                String temporal = pedirString(mensaje).trim();
+                if (Pattern.matches(".*\\d.*", temporal)) //comprueba que no contenga números
+                    throw new NombreOApellidoConNumerosException("[!] Un nombre o apellido no puede contener números");
+                else aDevolver = Character.toUpperCase(temporal.charAt(0)) + temporal.substring(1); //convierte la primera letra en mayúscula y asigna la cadena restante para devolver
+            } catch (NombreOApellidoConNumerosException exc) {
+                System.out.println(exc.getMessage());
+            }
+        } while (aDevolver == null);
+        return aDevolver;
     }
 }
