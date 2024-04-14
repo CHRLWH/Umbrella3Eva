@@ -1,9 +1,11 @@
 package utilidades;
 
 import excepcionesPersonalizadas.NombreOApellidoConNumerosException;
+import excepcionesPersonalizadas.SalarioDemasiadoBajoException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -70,5 +72,21 @@ public class Escaneres {
             }
         } while (aDevolver == null);
         return aDevolver;
+    }
+    public static double pedirSalarioAnual (String mensaje) {
+        double aDevoler = 0;
+        do {
+            try {
+                System.out.print(mensaje);
+                double temporal = new Scanner(System.in).nextDouble(); //pide el salario
+                if (temporal < 10000) throw new SalarioDemasiadoBajoException("[!] El salario anual es demasiado bajo");
+                aDevoler = temporal;
+            } catch (InputMismatchException _) {
+                System.out.println("[!] Se debe proporcionar un salario válido");
+            } catch (SalarioDemasiadoBajoException exc) {
+                System.out.println(exc.getMessage());
+            }
+        } while (aDevoler == 0);
+        return aDevoler;
     }
 }

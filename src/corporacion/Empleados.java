@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-import excepcionesPersonalizadas.DniNoValidoException;
+import excepcionesPersonalizadas.*;
 import utilidades.*;
 
 /**
@@ -46,13 +46,17 @@ public class Empleados implements ParaEmpleado {
      * La generacion del <b>código de empleado</b> se realiza de forma automática con {@link Empleados#generarCodEmpleado()}
      *
      *
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException excepciones heredadas de esta
      * <ul>
      * @throws DniNoValidoException
      *     <li>Si el DNI no es válido</li>
+     * @throws SalarioDemasiadoBajoException
      *     <li>Si el salario es inferior a 10000</li>
+     * @throws MenorDeEdadException
      *     <li>Si el empleado es menor de edad <br> (diferencia entre la fecha de nacimiento y la fecha de contrato en años menor de 18)</li>
+     * @throws NoHaNacidoEsteEmpleadoException
      *     <li>Si la fecha de contrato es posterior al nacimiento</li>
+     * @throws ContratacionPreviaALaCreacionDeLaEmpresaException
      *     <li>Si la fecha de contrato es anterior a la fecha de creacion de la empresa</li>
      * </ul>
      * @see Dni se hace uso de esta clase para validar y generar el DNI <br><br>
@@ -74,16 +78,16 @@ public class Empleados implements ParaEmpleado {
 
         if (sueldoAnual > 10000) {
             this.sueldoAnual = sueldoAnual;
-        } else throw new IllegalArgumentException("[!] Los empleados deben poder comer");
+        } else throw new SalarioDemasiadoBajoException("[!] Los empleados deben poder comer");
 
         if (ChronoUnit.YEARS.between(fechaNacimiento,fechaContrato) < 18) { //se usa la fecha de contrato ya que por algún error de inserción se podría dar de alta a un menor de edad en el pasado o por diferencia de días
-            throw new IllegalArgumentException("[!] No puedes contratar a un menor de edad");
+            throw new MenorDeEdadException("[!] No puedes contratar a un menor de edad");
         } else this.fechaNacimiento = fechaNacimiento;
 
         if (fechaContrato.isBefore(fechaNacimiento)){
-            throw new IllegalArgumentException("[!] No puedes contratar a alguien que no ha nacido aún");
+            throw new NoHaNacidoEsteEmpleadoException("[!] No puedes contratar a alguien que no ha nacido aún");
         } else if (fechaContrato.isBefore(FECHA_CREACION_EMPRESA)) {
-            throw new IllegalArgumentException("[!] No puedes contratar a alguien cuando la empresa no existía");
+            throw new ContratacionPreviaALaCreacionDeLaEmpresaException("[!] No puedes contratar a alguien cuando la empresa no existía");
         } else this.fechaContrato = fechaContrato;
 
     }
