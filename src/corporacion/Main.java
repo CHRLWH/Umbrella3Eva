@@ -50,17 +50,17 @@ public class Main {
                     case 3:
                         buscarEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                         break;
-                /*    case 4:
-                        buscarEmpleadosPorDepartamentoYMostrarReducido(empleadosList,departamento);
+                    case 4:
+                        buscarEmpleadosPorDepartamentoYMostrarReducido(empleadosList,Escaneres.pedirDepartamento("Introduce el nombre del departamento a buscar --> "));
                         break;
                     case 5:
-                        borrarEmpleadoPorCodigo(empleadosList,empleadosAntiguosList,codigoEmpleado);
+                        borrarEmpleadoPorCodigo(empleadosList,empleadosAntiguosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                         break;
                     case 6:
-                        subirSueldoEmpleadoPorCodigo(empleadosList,codigoEmpleado,porcentajeDeSubida);
+                        subirSueldoEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "),Escaneres.pedirPorcentajeDeSubida("Introduce el porcentaje que quieres subir --> "));
                         break;
                     case 7:
-                        mostrarSalarioEmpleadoPorCodigo(empleadosList,codigoEmpleado);*/
+                        mostrarSalarioEmpleadoPorCodigo(empleadosList,Escaneres.pedirCodigoEmpleado("Introduce el codigo del empleado a buscar --> "));
                 }
             } while (opcion != 0);
         }
